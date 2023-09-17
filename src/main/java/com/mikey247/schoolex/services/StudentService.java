@@ -24,5 +24,9 @@ public class StudentService {
         Optional<Student> student = studentRepository.findById(studentId);
         return student;
     }
+
+    public void deleteStudent(Long studentId){
+        studentRepository.deleteById(studentId);
+    }
     
 }

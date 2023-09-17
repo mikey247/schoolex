@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,5 +35,11 @@ public class StudentController {
     public ResponseEntity<Student> getStudent(@PathVariable Long studentId){
         Optional<Student> student = studentService.getStudent(studentId);
         return new ResponseEntity<>(student.get(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{studentId}")
+    public ResponseEntity<HttpStatus> deleteStudent (@PathVariable Long studentId){
+        studentService.deleteStudent(studentId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
